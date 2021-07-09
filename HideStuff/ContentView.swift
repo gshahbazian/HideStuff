@@ -51,7 +51,7 @@ struct BundleListItem: View {
         HStack {
             Image(nsImage: NSWorkspace.shared.icon(forFile: bundle.filePath))
             Text(appName ?? bundle.filePath)
-                .foregroundColor(appBundle == nil ? .red : .black)
+                .foregroundColor(appBundle == nil ? Color.red : Color.primary)
                 .lineLimit(1)
             Spacer()
             Button("Remove") {
@@ -63,6 +63,12 @@ struct BundleListItem: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            BundleListItem(bundle: BundleStore.BundleFile(filePath: "/Applications/Safari.app", bundleIdentifier: "com.apple.Safari"))
+            BundleListItem(bundle: BundleStore.BundleFile(filePath: "/Applications/Safari.app", bundleIdentifier: "com.apple.Safari"))
+                .preferredColorScheme(.dark)
+                .background(Color.black)
+        }
+        .frame(width: 300.0)
     }
 }

@@ -3,12 +3,17 @@ import Foundation
 public class BundleStore: ObservableObject {
 
     public struct BundleFile: Identifiable, Equatable, Codable {
+        public let filePath: String
+        public let bundleIdentifier: String
+
+        public init(filePath: String, bundleIdentifier: String) {
+            self.filePath = filePath
+            self.bundleIdentifier = bundleIdentifier
+        }
+
         public var id: String {
             filePath
         }
-
-        public let filePath: String
-        let bundleIdentifier: String
     }
 
     @Published public private(set) var items: [BundleFile] {
